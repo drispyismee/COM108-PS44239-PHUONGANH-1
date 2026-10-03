@@ -1,168 +1,198 @@
 #include <stdio.h>
 
-void tinhTrungBinhChan() {
-    int min, max;
-    int tong = 0;
-    int bienDem = 0;
-    int i;
-    float trungBinh;
+// Khai bao cac ham
+void bai1();
+void bai2();
+void bai3();
+void hienThiMenu();
 
-    printf("Nhap min: ");
-    scanf("%d", &min);
-    printf("Nhap max: ");
-    scanf("%d", &max);
+int main()
+{
+    int luaChon;
 
-    if (min > max) {
-        printf("Khong co so nao chia het cho 2 trong khoang da nhap!\n");
-        return;
-    }
+    do
+    {
+        // Hien thi Menu
+        hienThiMenu();
 
-    for (i = min; i <= max; i++) {
-        if (i % 2 == 0) {
-            tong = tong + i;
-            bienDem = bienDem + 1;
-        }
-    }
+        printf(">> Xin moi chon chuc nang (1-4): ");
+        scanf("%d", &luaChon);
 
-    if (bienDem == 0) {
-        printf("Khong co so nao chia het cho 2 trong khoang da nhap!\n");
-    } else {
-        trungBinh = (float)tong / bienDem;
-        printf("Tong cac so chia het cho 2: %d\n", tong);
-        printf("So luong cac so chia het cho 2: %d\n", bienDem);
-        printf("Trung binh cong: %.2f\n", trungBinh);
-    }
-}
-
-int main() {
-    int chon;
-
-    do {
-        printf("\n========== MENU ==========\n");
-        printf("1. Tinh trung binh cong cac so chia het cho 2\n");
-        printf("2. Chuc nang 2\n");
-        printf("3. Chuc nang 3\n");
-        printf("4. Thoat\n");
-        printf("==========================\n");
-        printf("Nhap lua chon: ");
-        scanf("%d", &chon);
-
-        switch (chon) {
+        switch (luaChon)
+        {
             case 1:
-                tinhTrungBinhChan();
+                bai1();
                 break;
+
             case 2:
-                printf("Chuc nang 2 dang phat trien...\n");
+                bai2();
                 break;
+
             case 3:
-                printf("Chuc nang 3 dang phat trien...\n");
+                bai3();
                 break;
+
             case 4:
-                printf("Thoat chuong trinh!\n");
+                printf("\nDa thoat chuong trinh!\n");
                 break;
+
             default:
-                printf("Lua chon khong hop le! Vui long nhap tu 1 den 4.\n");
-                break;
+                printf("\nLua chon khong hop le! Vui long chon tu 1 den 4.\n");
         }
-    } while (chon != 4);
+
+    } while (luaChon != 4);
 
     return 0;
 }
 
 
-//bai3
-#include <stdio.h>
+// ================================
+// Hien thi Menu
+// ================================
+void hienThiMenu()
+{
+    printf("\n");
+    printf("+------------------------------------------+\n");
+    printf("|           MENU CHUONG TRINH LAB 4       |\n");
+    printf("+------------------------------------------+\n");
+    printf("| 1. Tinh trung binh tong cac so chia het cho 2 |\n");
+    printf("| 2. Kiem tra So nguyen to                 |\n");
+    printf("| 3. Kiem tra So chinh phuong              |\n");
+    printf("| 4. Thoat chuong trinh                    |\n");
+    printf("+------------------------------------------+\n");
+}
 
-void tinhTrungBinhChan() {
-    int min, max;
-    int tong = 0;
-    int bienDem = 0;
+
+// ================================
+// Bai 1
+// Tinh trung binh cong cac so chia het cho 2
+// ================================
+void bai1()
+{
+    int n;
     int i;
+    int so;
+    int tong = 0;
+    int dem = 0;
     float trungBinh;
 
-    printf("Nhap min: ");
-    scanf("%d", &min);
-    printf("Nhap max: ");
-    scanf("%d", &max);
+    printf("\n========== BAI 1 ==========\n");
 
-    if (min > max) {
-        printf("Khong co so nao chia het cho 2 trong khoang da nhap!\n");
+    printf("Nhap so luong phan tu n: ");
+    scanf("%d", &n);
+
+    // Kiem tra n
+    if (n <= 0)
+    {
+        printf("So luong phan tu phai lon hon 0!\n");
         return;
     }
 
-    for (i = min; i <= max; i++) {
-        if (i % 2 == 0) {
-            tong = tong + i;
-            bienDem = bienDem + 1;
+    // Nhap cac so
+    for (i = 1; i <= n; i++)
+    {
+        printf("Nhap so thu %d: ", i);
+        scanf("%d", &so);
+
+        // Kiem tra so chia het cho 2
+        if (so % 2 == 0)
+        {
+            tong = tong + so;
+            dem++;
         }
     }
 
-    if (bienDem == 0) {
-        printf("Khong co so nao chia het cho 2 trong khoang da nhap!\n");
-    } else {
-        trungBinh = (float)tong / bienDem;
-        printf("Tong cac so chia het cho 2: %d\n", tong);
-        printf("So luong cac so chia het cho 2: %d\n", bienDem);
-        printf("Trung binh cong: %.2f\n", trungBinh);
+    // Neu co so chia het cho 2
+    if (dem > 0)
+    {
+        trungBinh = (float)tong / dem;
+
+        printf("\nTong cac so chia het cho 2 = %d", tong);
+        printf("\nSo luong cac so chia het cho 2 = %d", dem);
+        printf("\nTrung binh cong cac so chia het cho 2 = %.2f\n", trungBinh);
+    }
+    else
+    {
+        printf("\nKhong co so nao chia het cho 2!\n");
     }
 }
 
-void kiemTraNguyenTo() {
-    int x, i;
+
+// ================================
+// Bai 2
+// Kiem tra so nguyen to
+// ================================
+void bai2()
+{
+    int n;
+    int i;
     int laNguyenTo = 1;
 
-    printf("Nhap so nguyen x: ");
-    scanf("%d", &x);
+    printf("\n========== BAI 2 ==========\n");
 
-    if (x < 2) {
+    printf("Nhap n: ");
+    scanf("%d", &n);
+
+    if (n < 2)
+    {
         laNguyenTo = 0;
-    } else {
-        for (i = 2; i < x; i++) {
-            if (x % i == 0) {
+    }
+    else
+    {
+        for (i = 2; i * i <= n; i++)
+        {
+            if (n % i == 0)
+            {
                 laNguyenTo = 0;
                 break;
             }
         }
     }
 
-    if (laNguyenTo == 1) {
-        printf("%d la so nguyen to.\n", x);
-    } else {
-        printf("%d khong phai la so nguyen to.\n", x);
+    if (laNguyenTo == 1)
+    {
+        printf("%d la so nguyen to.\n", n);
+    }
+    else
+    {
+        printf("%d khong phai la so nguyen to.\n", n);
     }
 }
 
-int main() {
-    int chon;
 
-    do {
-        printf("\n========== MENU ==========\n");
-        printf("1. Tinh trung binh cong cac so chia het cho 2\n");
-        printf("2. Kiem tra so nguyen to\n");
-        printf("3. Chuc nang 3\n");
-        printf("4. Thoat\n");
-        printf("==========================\n");
-        printf("Nhap lua chon: ");
-        scanf("%d", &chon);
+// ================================
+// Bai 3
+// Kiem tra so chinh phuong
+// ================================
+void bai3()
+{
+    int n;
+    int i;
+    int laChinhPhuong = 0;
 
-        switch (chon) {
-            case 1:
-                tinhTrungBinhChan();
+    printf("\n========== BAI 3 ==========\n");
+
+    printf("Nhap n: ");
+    scanf("%d", &n);
+
+    if (n >= 0)
+    {
+        for (i = 0; i * i <= n; i++)
+        {
+            if (i * i == n)
+            {
+                laChinhPhuong = 1;
                 break;
-            case 2:
-                kiemTraNguyenTo();
-                break;
-            case 3:
-                printf("Chuc nang 3 dang phat trien...\n");
-                break;
-            case 4:
-                printf("Thoat chuong trinh!\n");
-                break;
-            default:
-                printf("Lua chon khong hop le! Vui long nhap tu 1 den 4.\n");
-                break;
+            }
         }
-    } while (chon != 4);
+    }
 
-    return 0;
+    if (laChinhPhuong == 1)
+    {
+        printf("%d la so chinh phuong.\n", n);
+    }
+    else
+    {
+        printf("%d khong phai la so chinh phuong.\n", n);
+    }
 }
